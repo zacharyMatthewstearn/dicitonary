@@ -22,10 +22,6 @@ A web application written in Java and served with Spark, with which a user may i
 * _Clone this repository_
 * _Open with text editor of your choice_
 
-_OR_
-
-* _View on GitHub Pages at: https://zacharymatthewstearn.github.io/dictionary/_
-
 
 ## Technologies Used
 
