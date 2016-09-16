@@ -19,8 +19,14 @@ A web application written in Java and served with Spark, with which a user may i
 
 ## Setup/Installation Requirements
 
+* _REQUIRED:_
+  * _JRE/JDK_
+  * _Gradle_
+
+
 * _Clone this repository_
-* _Open with text editor of your choice_
+* _Within the cloned directory, run the following command:_ $gradle run
+* _In your web browser of choice, navigate to:_ http://localhost:4567/
 
 
 ## Technologies Used
