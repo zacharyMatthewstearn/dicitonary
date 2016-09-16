@@ -26,4 +26,18 @@ public class WordTest {
 		expectedOutput.add("a procedure intended to establish the quality, performance, or reliability of something, especially before it is taken into widespread use");
 		assertEquals(expectedOutput, testWord.getDefinitions());
 	}
+
+	@Test
+	public void findWord_returnsNullIfNotInAllWords_null() {
+		Word testWord = new Word("test");
+		Word expectedOutput = null;
+		assertEquals(expectedOutput, Word.findWord("bazooka"));
+	}
+
+	@Test
+	public void findWord_returnsCorrectWordFromAllWords_String() {
+		Word testWord = new Word("test");
+		String expectedOutput = "test";
+		assertEquals(expectedOutput, Word.findWord("test").getWord());
+	}
 }

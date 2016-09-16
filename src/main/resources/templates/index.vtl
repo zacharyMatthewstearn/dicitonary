@@ -1,35 +1,67 @@
 <h1>Zack's Handy-Dandy Dictionary</h1>
 
 <div class="row">
+	#if($words)
+		<hr>
+	#end
 
 	<div id="words" class="col-md-6">
 		#if($words)
+			<h3>Known words:</h3>
+			<p>(Click for definitions)</p>
 			<ul>
 			#foreach($word in $words)
-				<li><a href="#">$word.getWord()</a></li>
+				<li>
+					#if($word.getWord().equals($selected.getWord()))
+						<strong>
+					#end
+					<a href="/definitions/$word.getWord()">$word.getWord()</a>
+					#if($word.getWord().equals($selected.getWord()))
+						</strong>
+					#end
+				</li>
 			#end
 			</ul>
 		#end
-		<form action="/" method="post" class="form-group">
+	</div>
+
+	<div id="definitions" class="col-md-6">
+		#if($selected)
+			<h3>Definitions of "$selected.getWord()"</h3>
+			#if($selected.getDefinitions().size() == 0)
+				<p>(no definitions stored)</p>
+			#else
+				<ul>
+				#foreach($definition in $selected.getDefinitions())
+					<li>$definition</li>
+				#end
+				</ul>
+			#end
+		#end
+	</div>
+</div>
+
+<div class="row">
+	<hr>
+
+	<div id="wordsForm" class="col-md-6">
+		<form action="/words" method="post" class="form-group">
 			<label for="inputWord">Enter a word to add to the dictionary:</label>
 			<input type="text" id="inputWord" name="inputWord" required>
 			<input type="submit" name="addWord" value="Add Word">
 		</form>
 	</div>
 
-	<div id="definitions" class="col-md-6">
+	<div id="definitionsForm" class="col-md-6">
 		#if($selected)
-			<ul>
-			#foreach($definition in $selected)
-				<li>$definition</li>
-			#end
 			</ul>
-			<form action="/" method="post" class="form-group">
-				<label for="inputDefinition">Enter a definition to add to  <strong>$selected</strong>:</label>
+			<form action="/definitions/$selected.getWord()" method="post" class="form-group">
+				<label for="inputDefinition">
+					Enter a definition to add to "<strong>$selected.getWord()</strong>":
+				</label>
 				<input type="text" id="inputDefinition" name="inputDefinition" required>
 				<input type="submit" name="addDefinition" value="Add Definition">
 			</form>
 		#end
 	</div>
-
 </div>
